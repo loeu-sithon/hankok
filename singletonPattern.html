@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function Hero(name){
+			if(typeof Hero.instance==='object'){
+				return Hero.instance;
+			}
+
+			this.name = name;
+			Hero.instance = this;
+			return this;
+		}
+
+		var derekHero = Hero("Derek");
+		document.write("Our hero is " + derekHero.name + "<br/>");
+
+		var paulHero = Hero("Paul");
+		document.write("Our hero is " + paulHero.name + "<br/>");
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

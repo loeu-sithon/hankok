@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+	function Animal(){
+		this.name = "Animal";
+		this.toString = function(){
+			return "My name is " + this.name;
+		};
+	}
+
+	function Canine(){
+		this.name = "Canine";
+	}
+	function Wolf(){
+		this.name = "Wolf";
+	}
+
+	Canine.prototype = new Animal();
+	Wolf.prototype = new Canine();
+
+	Canine.prototype.constructor = Canine;
+	Wolf.prototype.constructor = Wolf;
+
+	var arcticWolf = new Wolf();
+
+	document.write(arcticWolf.toString() + "<br/>");
+	document.write("Wolf instance of Animal : " + (arcticWolf instanceof Animal) + "<br/>");
+
+	Animal.prototype.sound = "Grrrr";
+	Animal.prototype.getSound = function(){
+		return this.name + " says " + this.sound;
+	}
+
+	Canine.prototype.sound = "Woof";
+	Wolf.prototype.sound = "Grrr Woof";
+
+	document.write(arcticWolf.getSound() + "<br/>");
+
+	function Rodent(){
+		this.name = "Rodent";
+	}
+	function Rat(){
+		this.name = "Rat";
+	}
+
+	Rodent.prototype = new Animal();
+	Rat.prototype = Rodent.prototype;
+	Rodent.prototype.constructor = Rodent;
+	Rat.prototype.constructor = Rat;
+
+	var caneRat = new Rat();
+	document.write(caneRat.toString() + "<br/>");
+
+	//***********
+
+	function Cat(){
+		this.name = "Cat";
+	}
+	function Tiger(){
+		this.name = "Tiger";
+	}
+
+	Cat.prototype = new Animal();
+	Tiger.prototype = Cat.prototype;
+	Cat.prototype.constructor = Cat;
+	Tiger.prototype.constructor = Tiger;
+
+	var test = new Tiger();
+	document.write(test.toString()+ "<br/>");
+
+	//*********** Intermediate Function Inheritance *********
+
+	function extend(Child,Parent){
+		var Temp = function(){};
+		Temp.prototype = Parent.prototype;
+		Child.prototype = new Temp();
+		Child.prototype.constructor = Child;
+	}
+
+	function Deer(){
+		this.name = "Deer";
+		this.sound = "Snort";
+	}
+
+	extend(Deer,Animal);
+
+	var elk = new Deer();
+	document.write(elk.getSound() + "<br/>");
+
+
+
+
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

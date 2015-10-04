@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+	function extend(Child,Parent){
+		var Temp = function(){};
+		Temp.prototype = Parent.prototype;
+		Child.prototype = new Temp();
+		Child.prototype.constructor = Child;
+	}
+
+	function Deer(){
+		this.name = "Deer";
+		this.sound = "Snort";
+	}
+
+	extend(Deer,Animal);
+
+	var elk = new Deer();
+	document.write(elk.getSound() + "<br/>");
+	</script>
+</head>
+<body>
+
+</body>
+</html>
